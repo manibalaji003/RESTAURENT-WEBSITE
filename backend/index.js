@@ -10,6 +10,7 @@ const menuSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    category: String,
     image: String,
     description: String,
     price: Number
@@ -33,6 +34,7 @@ app.get('/post', (req,res)=>{
 app.post('/post', (req,res)=>{
     const menu = new Menu({
         name: req.body.name,
+        category: req.body.category,
         image: req.body.image,
         description: req.body.description,
         price: req.body.price
