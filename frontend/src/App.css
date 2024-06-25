@@ -1,22 +1,46 @@
-.imagetextcontainer{
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
+.navibar{
+  background-color: rgba(0, 0, 0, 0.384);
+
+}
+
+.imagecontainer{
+
+  background-image: url('./assets/bgdesign.png');
+  height: 600px;
+  background-size: cover;
+ 
+}
+
+
+.logo{
+  color: white;
+  font-size: 1.5rem;
+  padding: 1%;
+}
+
+.specialdish{
+  background-color: rgba(0, 0, 0, 0.432);
 }
 
 .image{
-  filter: blur(5px);
-  width: 100%;
-  height: auto;
-  vertical-align: middle;
+  height: 200px;
+  width: 200px;
+  box-shadow: 5px 5px 10px 5px  black;
+
+}
+.aboutcontact{
+  background-color: rgba(0, 0, 0, 0.568);
+  color: white;
+  padding: 2%;
+  display: flex;
+  flex-direction: row;
+}
+.aboutus{
+  text-align: justify;
+  
 }
 
-.imgtext{
-  position: absolute;
-  top: 30%;
-  background: rgb(0, 0, 0); /* Fallback color */
-  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-  color: #f1f1f1;
-  width: 100%;
-  padding: 20px;
+.footer{
+  background-color: rgba(2, 19, 13, 0.993);
+  color: white;
 }
