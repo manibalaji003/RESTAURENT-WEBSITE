@@ -17,17 +17,27 @@
   font-size: 1.5rem;
   padding: 1%;
 }
+
+.specialdish{
+  background-color: rgba(0, 0, 0, 0.432);
+}
+
 .image{
   height: 200px;
   width: 200px;
   box-shadow: 5px 5px 10px 5px  black;
 
 }
-.aboutus{
-  text-align: justify;
+.aboutcontact{
   background-color: rgba(0, 0, 0, 0.568);
   color: white;
   padding: 2%;
+  display: flex;
+  flex-direction: row;
+}
+.aboutus{
+  text-align: justify;
+  
 }
 
 .footer{

@@ -29,8 +29,8 @@ const Home = () => {
        <Review />
        </div>
        <hr />
-       <div className='aboutus'>
-        <Container>
+       <div className='aboutcontact'>
+        <Container className='aboutus'>
         <h3>About Us</h3>
        
 
@@ -40,6 +40,14 @@ Step into [Your Restaurant Name] and enjoy an elegant yet comfortable atmosphere
 
 Join us at [Your Restaurant Name] and discover a dining experience that delights the senses and nourishes the soul. Your table is waiting!
        </Container>
+       
+       
+            <Container className='address'>
+          <h3>Contact us</h3>
+                <p>EMAIL:  <span>manibalaji22003@gmail.com</span></p>
+                <p>PHONE NO:  <span>123467890</span></p>
+                <p>ADDRESS:  <address>1/3 vivekanda street, dubai main road Dubai </address></p>
+            </Container>
        </div>
        <Footer />
        </>

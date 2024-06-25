@@ -8,7 +8,7 @@ import poster5 from '../assets/poster5.png'
 import poster6 from '../assets/poster6.png'
 const Special = () => {
   return (
-    <div >
+    <div className='specialdish'>
         <Container className='d-flex justify-content-center'>
         <Row >
             <Col>
@@ -35,6 +35,7 @@ const Special = () => {
             </Col>
         </Row>
         </Container>
+        <hr/>
     </div>
   )
 }
