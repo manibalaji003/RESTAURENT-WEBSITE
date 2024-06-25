@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(morgan('tiny'))
 
 //routes
-app.get(`${api}/items`,itemsRouter)
-app.post(`${api}/items`,itemsRouter)
+app.use(`${api}/items`,itemsRouter)
+app.use(`${api}/items`,itemsRouter)
 
 //database
 mongoose.connect(process.env.CONNECTION_STRING)
