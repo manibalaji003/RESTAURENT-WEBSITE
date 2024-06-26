@@ -5,7 +5,7 @@ const itemSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    category: {
+    description: {
         type: String,
         required: true
     },
@@ -13,13 +13,16 @@ const itemSchema = mongoose.Schema({
         type: String,
         default: ''
     },
-    description: {
-        type: String,
-        required: true
-    },
     price:  {
         type: Number,
         required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },rating: {
+        type: Number,
+        default: 0
     }
 })
 

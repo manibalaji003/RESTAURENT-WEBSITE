@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router();
 
 // get all items
-router.get(`/`, async (req,res)=>{ 
+router.get('/', async (req,res)=>{ 
     Item.find().then((obj)=>{
         res.status(200).json(obj)
     }).catch((err)=>{
@@ -13,6 +13,19 @@ router.get(`/`, async (req,res)=>{
         }) 
     })
 })
+
+// get all items - category based array of obj
+router.get('/cat', async (req,res)=>{ 
+    const Beverages= await Item.find({category: "Beverages"})
+    const Deserts = await Item.find({category: "Desert"})
+    
+    res.status(200).json({
+        Beverages,
+        Deserts
+    })
+})
+
+
 
 // get specific item by name
 router.get('/:name', async (req,res)=>{
