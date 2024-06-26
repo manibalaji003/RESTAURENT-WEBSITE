@@ -14,6 +14,19 @@ router.get(`/`, async (req,res)=>{
     })
 })
 
+// get specific item by name
+router.get('/:name', async (req,res)=>{
+
+    Item.findOne({name: req.params.name}).then((obj)=>{
+        res.status(200).json(obj)
+    }).catch((err)=>{
+        res.status(500).json({
+            error: err,
+            success: false
+        })
+    })
+})
+
 // get specific item by id
 router.get(`/:id`, async (req,res)=>{
     Item.findById(req.params.id).then((obj)=>{
@@ -25,6 +38,7 @@ router.get(`/:id`, async (req,res)=>{
         })
     })
 })
+
 
 // delete by id
 router.delete('/:id', (req,res)=>{

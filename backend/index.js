@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv/config');
 
+const app = express();
 const api = process.env.API_URL;
 const PORT = process.env.PORT;
 const itemsRouter = require('./routes/items')
@@ -12,9 +13,11 @@ const ordersRouter = require('./routes/orders')
 const orderItemsRouter = require('./routes/orderItems')
 
 //middleware
-const app = express();
+app.use(cors());
+app.options('*',cors());
 app.use(express.json());
-app.use(morgan('tiny'))
+app.use(morgan('tiny'));
+
 
 //routes
 app.use(`${api}/items`,itemsRouter)
