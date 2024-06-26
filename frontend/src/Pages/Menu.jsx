@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const Menu = () => {
 
-  axios.get('http://localhost:3300/api/v1/items/Kheer',{cors:true}).then((obj)=>{
+  axios.get('http://localhost:3300/api/v1/items/Kheer').then((obj)=>{
     console.log(obj.data)
   }).catch((err)=>{
     console.log(err)
