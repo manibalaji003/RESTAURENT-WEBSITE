@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Home from './Pages/Home'
+import Menu from './Pages/Menu'
 
 function App() {
   
@@ -9,6 +10,7 @@ function App() {
     <>
 
     <Home />
+    <Menu />
   </>
   )
 }
