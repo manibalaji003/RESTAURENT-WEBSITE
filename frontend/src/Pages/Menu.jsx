@@ -33,17 +33,25 @@ const Menu = () => {
     console.log('itemData:', itemData);
   }, [itemData]);
 
-  
+  const TotalData =()=>{
+
+      for(let x in itemData){
+        
+      }
+
+  }
 
   if (loading) {
     return <div>Loading...</div>;
   }
+
 
   return (
     <>
     {/* <Desserts desseretsdata={itemData.Desserts} />
     <Beverages  bevarage={itemData.Beverages}/>
      */}
+        
      </>
   );
 };
