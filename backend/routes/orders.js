@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router();
 
 router.get('/',async (req,res)=>{
-    const order = await Order.find();
+    const order = await Order.find().populate('orderItems');
     if(!order){
         res.status(500).json({success: false})
     }
@@ -11,7 +11,7 @@ router.get('/',async (req,res)=>{
 })
 router.post('/', (req,res)=>{
     const order = new Order({
-        name: req.body.name
+        orderItems: req.body.orderItems
     })
     order.save().then((savedObj)=>{
         res.status(201).json(savedObj)

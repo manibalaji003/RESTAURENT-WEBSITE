@@ -26,7 +26,6 @@ router.get('/cat', async (req,res)=>{
 })
 
 
-
 // get specific item by name
 router.get('/:name', async (req,res)=>{
 
@@ -41,15 +40,15 @@ router.get('/:name', async (req,res)=>{
 })
 
 // get specific item by id
-router.get(`/:id`, async (req,res)=>{
+router.get('/:id', async (req,res)=>{
     Item.findById(req.params.id).then((obj)=>{
         res.status(200).json(obj)
     }).catch((err)=>{
         res.status(500).json({
-            error: err,
+            error: err, 
             success: false
         })
-    })
+    }) 
 })
 
 
@@ -75,7 +74,8 @@ router.post('/', (req,res)=>{
         category: req.body.category,
         image: req.body.image,
         description: req.body.description,
-        price: req.body.price
+        price: req.body.price,
+        rating: req.body.rating
     })
     item.save().then((created)=>{
         res.status(201).json(created)
@@ -94,7 +94,10 @@ router.put('/:id',(req,res)=>{
         category: req.body.category,
         image: req.body.image,
         description: req.body.description,
-        price: req.body.price
+        price: req.body.price,
+        rating: req.body.rating
+    },{
+        new: true
     }).then((obj)=>{
         res.status(201).json(obj)
     }).catch((err)=>{
