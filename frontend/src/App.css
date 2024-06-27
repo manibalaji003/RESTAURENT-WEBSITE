@@ -44,3 +44,22 @@
   background-color: rgba(2, 19, 13, 0.993);
   color: white;
 }
+
+
+.dessserts{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+h3{
+  color: rgb(41, 40, 40);
+}
+.pricetag{
+  font-size: 1.5rem;
+}
+.dessserts Button{
+  background-color: red;
+  border-color: brown;
+  
+
+}
