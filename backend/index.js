@@ -13,8 +13,7 @@ const ordersRouter = require('./routes/orders')
 const orderItemsRouter = require('./routes/orderItems')
 
 //middleware
-app.use(cors());
-app.options('*',cors());
+app.use(cors({origin:"*"}));
 app.use(express.json());
 app.use(morgan('tiny'));
 
