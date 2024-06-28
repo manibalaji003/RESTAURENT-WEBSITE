@@ -80,3 +80,13 @@ margin: 10% 0;
 background-image: linear-gradient(to right top, #076d21, #0f8f2d, #19b33a, #24d946, #31ff53);
 border: none;
 }
+
+.signupcontainer{
+  width: fit-content;
+  background-color: rgba(255, 255, 255, 0.726);
+  padding: 2%;
+  margin-top: 5%;
+  border: 1px solid black;
+  border-radius: 20px;
+  box-shadow: 5px 5px 40px black;
+}

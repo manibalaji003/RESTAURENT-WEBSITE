@@ -1,28 +1,64 @@
 import React from 'react'
 import Header from '../Components/Header'
-import { Button, Container ,FloatingLabel,Form} from 'react-bootstrap'
+import { Button, Container ,Row,Col,FloatingLabel,Form} from 'react-bootstrap'
 
 
 const Signup = () => {
 
-    function isValidEmail(email) {
-        // Define a regular expression pattern for email validation.
-        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return pattern.test(email);
-      }
-      
+    
+
   return (
     <div>
             <Header />
-            <Container className='logincontainer' >
-               <center> <h2>LOGIN</h2></center><br/>
-            <FloatingLabel    controlId="floatingInput" label="Email address" className="mb-3">
-                <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingPassword" label="Password">
-                <Form.Control type="password" placeholder="Password" />
-            </FloatingLabel>
-            <Button>Create Account</Button>
+
+            <Container  className='signupcontainer'>
+                <center><h2>SIGN UP</h2></center>
+              <Form>
+      <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+      </Row>
+
+      <Form.Group className="mb-3" controlId="formGridAddress1">
+        <Form.Label>Apartment</Form.Label>
+        <Form.Control type='text'/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formGridAddress2">
+        <Form.Label>Street</Form.Label>
+        <Form.Control  type='text' />
+      </Form.Group>
+
+      <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridCity">
+          <Form.Label>City</Form.Label>
+          <Form.Control type='text' />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridState">
+          <Form.Label>Phone</Form.Label>
+            <Form.Control type='phone' />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridZip">
+          <Form.Label>Zip</Form.Label>
+          <Form.Control />
+        </Form.Group>
+      </Row>
+
+      
+
+      <Button variant="primary" type="submit">
+        Create Account
+      </Button>
+    </Form>
           
             </Container>
     </div>
