@@ -27,3 +27,12 @@ Website layout:
 	      -> Contact Us
 2: menu page: -> navbar{food items }
 	      -> 1. food 1 with image description etc( with add to cart button)
+
+		
+
+update: 
+28 june 4:10 - users nama rendu peru matu add panniruken, post method
+               la 'api/users', body la info vachu post pannanu,
+			   post - 'users/login' la body la email um password um potu 
+			   anuppuna user check panni fetch pannum, valid user aanu 
+			   get - 'users' la ella user um varum
