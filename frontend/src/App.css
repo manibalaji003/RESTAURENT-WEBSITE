@@ -51,8 +51,8 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
-h3{
-  color: rgb(41, 40, 40);
+h3,h2{
+  color: rgb(0, 155, 77);
 }
 .pricetag{
   font-size: 1.5rem;
@@ -62,4 +62,21 @@ h3{
   border-color: brown;
   
 
+}
+
+.logincontainer{
+  background-color: rgba(255, 255, 255, 0.726);
+  padding: 2%;
+  margin-top: 5%;
+  border: 1px solid black;
+  max-width: 30%;
+  border-radius: 20px;
+  box-shadow: 5px 5px 40px black;
+}
+
+.logincontainer Button{
+  width: 100%;
+margin: 10% 0;
+background-image: linear-gradient(to right top, #076d21, #0f8f2d, #19b33a, #24d946, #31ff53);
+border: none;
 }
