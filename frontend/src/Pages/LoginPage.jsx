@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Header from '../Components/Header'
 import { Button, Container ,FloatingLabel,Form} from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const LoginPage = () => {
@@ -57,7 +57,7 @@ const HandleFormData = async (e) =>{
             </FloatingLabel>
             <Button type='submit'>Enter</Button>
             </Form>
-            <center>Need an Account? Create account </center>
+            <center>Need an Account? <Link to={'/signup'}>Create account</Link> </center>
             </Container>
     </div>
   )

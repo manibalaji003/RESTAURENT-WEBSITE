@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../Components/Header'
 import { Button, Container ,Row,Col,FloatingLabel,Form} from 'react-bootstrap'
 
 
 const Signup = () => {
 
+  const [userData,setUserData]=useState(
+    {
+      'email':"",
+      "password":"",
+      "Apartment":"",
+      "Street":"",
+        "phone":"",
+        "pincode":"",
+        "city":'',
+
+    }
+  );
     
 
   return (
@@ -16,48 +28,60 @@ const Signup = () => {
               <Form>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
+        <Form.Label>UserName<super>*</super></Form.Label>
+          <Form.Control type="text" placeholder="Enter username . . ." />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridText">
+          <Form.Label>Email<super>*</super></Form.Label>
           <Form.Control type="email" placeholder="Enter email" />
+        </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Password<super>*</super></Form.Label>
+          <Form.Control type="password" placeholder="Enter Password" />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Label>Confirm Password<super>*</super></Form.Label>
+          <Form.Control type="password" placeholder="Confirm Password" />
         </Form.Group>
       </Row>
 
       <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Apartment</Form.Label>
-        <Form.Control type='text'/>
+        <Form.Label>Apartment<super>*</super></Form.Label>
+        <Form.Control type='text' placeholder='Apartment . . . . '/>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formGridAddress2">
-        <Form.Label>Street</Form.Label>
+        <Form.Label>Street<super>*</super></Form.Label>
         <Form.Control  type='text' />
       </Form.Group>
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>City</Form.Label>
+          <Form.Label>City<super>*</super></Form.Label>
           <Form.Control type='text' />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>Phone</Form.Label>
+          <Form.Label>Phone<super>*</super></Form.Label>
             <Form.Control type='phone' />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Zip</Form.Label>
+          <Form.Label>Pincode<super>*</super></Form.Label>
           <Form.Control />
         </Form.Group>
       </Row>
 
       
-
-      <Button variant="primary" type="submit">
+      <Container className='d-flex justify-content-end'> <Button variant="primary" type="submit">
         Create Account
-      </Button>
+      </Button></Container>
+    
     </Form>
           
             </Container>

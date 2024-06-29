@@ -1,6 +1,7 @@
 .navibar{
-  background-color: rgba(0, 0, 0, 0.384);
-
+  background-color: whitesmoke;
+  box-shadow: 5px 5px 40px  black;
+  border: 1px solid black;
 }
 
 .imagecontainer{
@@ -10,8 +11,15 @@
   background-size: cover;
  
 }
-
-
+.loader{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+super{
+  color: red;
+}
 .logo{
   color: white;
   font-size: 1.5rem;
@@ -46,20 +54,23 @@
 }
 
 
-.dessserts{
+.menu-category{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.item-description{
+  text-align: justify;
 }
 h3,h2{
   color: rgb(0, 155, 77);
 }
 .pricetag{
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
-.dessserts Button{
-  background-color: red;
-  border-color: brown;
+.menu-category Button{
+  background-color: rgb(2, 167, 71);
+  border-color: rgb(36, 255, 17);
   
 
 }
@@ -85,8 +96,16 @@ border: none;
   width: fit-content;
   background-color: rgba(255, 255, 255, 0.726);
   padding: 2%;
-  margin-top: 5%;
+  margin-top: 3%;
   border: 1px solid black;
   border-radius: 20px;
   box-shadow: 5px 5px 40px black;
+}
+
+
+.signupcontainer Button{
+  
+background-image: linear-gradient(to right top, #076d21, #0f8f2d, #19b33a, #24d946, #31ff53);
+border: none;
+
 }
