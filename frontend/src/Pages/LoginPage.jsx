@@ -34,7 +34,7 @@ const HandleFormData = async (e) =>{
             return ;
         }
 
-        let response=await axios.post("http://localhost:3300/api/user/login",Lformdata);
+        let response=await axios.post("http://localhost:3300/api/v1/users/login",Lformdata);
         
        
         console.log(response.data);
