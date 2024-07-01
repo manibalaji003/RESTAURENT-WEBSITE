@@ -2,6 +2,7 @@ const {User} = require('../models/users')
 const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 router.post('/',async (req,res)=>{
     let user = new User({
@@ -31,7 +32,12 @@ router.post('/login',async (req,res)=>{
         })
     }
     if(user && bcrypt.compareSync(req.body.password, user.passwordHash)){
-        return res.status(200).json(user)
+        const secret = process.env.JWT_SECRET
+        const token = jwt.sign({id : user.id},secret,{expiresIn: '1d'})
+        return res.status(200).json({
+            success: true,
+            token: token
+        })
     }
     res.status(500).json({
         error: "Email or Password is wrong!",
