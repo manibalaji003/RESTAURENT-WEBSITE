@@ -4,6 +4,7 @@ import { Container, Image } from 'react-bootstrap'
 import Footer from '../Components/Footer'
 import Special from '../Components/Special'
 import Review from '../Components/Review'
+import Homesub from '../Components/Homesubcontainer'
 
 
 const Home = () => {
@@ -12,8 +13,10 @@ const Home = () => {
          
        <div className='imagecontainer'>
        <Header /> 
-        
+
        </div>
+       <div> <Homesub /></div>
+      
        <div>
           <center><h3>Why you'll love - - - - - - -  </h3></center>
        </div>
