@@ -4,6 +4,20 @@
   border: 1px solid black;
 }
 
+
+.navtext{
+  border-bottom: 2px solid whitesmoke;
+  margin: 0 10px;
+  
+}
+
+.navtext:hover{
+  border-color: green;
+  transition: border-color 2s ease-in;
+  border-bottom-style: solid;
+
+}
+
 .imagecontainer{
 
   background-image: url('./assets/bgdesign.png');
@@ -69,8 +83,8 @@ h3,h2{
   font-size: 1.2rem;
 }
 .menu-category Button{
-  background-color: rgb(2, 167, 71);
-  border-color: rgb(36, 255, 17);
+  background-image: linear-gradient(to right top, #026d30, #05843c, #089b49, #0bb357, #0dcc65, #0bd466, #0bdb68, #0be369, #09db5d, #08d351, #07cc44, #06c437);
+  border-color: rgb(0, 0, 0);
   
 
 }

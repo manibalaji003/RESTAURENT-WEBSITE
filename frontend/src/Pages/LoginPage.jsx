@@ -10,13 +10,13 @@ const LoginPage = () => {
         'email':'',
         'password':""
     });
-    const [emailstatus ,setEmailstatus]=useState(false);
+    const [InValid,setInvalid]=useState(false);
   //  const navigate=useNavigate()
 
 
 
     const Getdata=(e)=>{
-        setEmailstatus(false);
+       
         const {name,value}=e.target;
         setFormData(prevState => ({
             ...prevState,
@@ -33,12 +33,14 @@ const HandleFormData = async (e) =>{
             console.log("input field must no be empty");
             return ;
         }
-
-        let response=await axios.post("http://localhost:3300/api/user/login",Lformdata);
+        try{
+        let response=await axios.post("http://localhost:3300/api/v1/users/login",Lformdata);
         
        
         console.log(response.data);
-
+        }catch(e){
+          console.error(e);
+        }
 
 }
 
@@ -51,11 +53,12 @@ const HandleFormData = async (e) =>{
             <FloatingLabel     label="Email address" className="mb-3">
                 <Form.Control type="email" name='email'  value ={Lformdata.email} onChange={Getdata}/>
             </FloatingLabel>
-            {emailstatus && <p style={{color:'red'}}>Invalid Email</p>}
+           
             <FloatingLabel controlId="floatingPassword" label="Password" >
                 <Form.Control type="password" placeholder="Password"  name='password' value={Lformdata.password} onChange={Getdata} />
             </FloatingLabel>
             <Button type='submit'>Enter</Button>
+            {InValid && <p style={{color:'red'}}>Invalid Login credentials</p>}
             </Form>
             <center>Need an Account? <Link to={'/signup'}>Create account</Link> </center>
             </Container>
