@@ -4,29 +4,36 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-router.post('/',async (req,res)=>{
-    let user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        passwordHash : bcrypt.hashSync(req.body.password,10),
-        apartment: req.body.apartment,
-        street : req.body.street,
-        city: req.body.city,
-        pincode: req.body.pincode,
-        phone: req.body.phone,
-        isAdmin: req.body.isAdmin
-    })
-    user = await user.save();
-    if(!user){
-        res.status(500).json({
-            message: "Unable to create user!",
-            success: false
-        })
-    }res.status(201).send(user); 
-})
+// router.post('/',async (req,res)=>{
+//     let user = new User({
+//         name: req.body.name,
+//         email: req.body.email,
+//         passwordHash : bcrypt.hashSync(req.body.password,10),
+//         apartment: req.body.apartment,
+//         street : req.body.street,
+//         city: req.body.city,
+//         pincode: req.body.pincode,
+//         phone: req.body.phone,
+//         isAdmin: req.body.isAdmin
+//     })
+//     user = await user.save();
+//     if(!user){
+//         res.status(500).json({
+//             message: "Unable to create user!",
+//             success: false
+//         })
+//     }res.status(201).send(user); 
+// })
 
 router.post('/register',async (req,res)=>{
-    let user = new User({
+    let user = await User.findOne({email: req.body.email})
+    if(user){
+        return res.status(400).json({
+            message: "User already exists!",
+            success: false
+        })
+    }
+    user = new User({
         name: req.body.name,
         email: req.body.email,
         passwordHash : bcrypt.hashSync(req.body.password,10),
@@ -42,7 +49,10 @@ router.post('/register',async (req,res)=>{
             message: "Unable to create user!",
             success: false
         })
-    }res.status(201).send(user);
+    }res.status(201).json({
+        message: "User creation successful",
+        success: true
+    });
 })
 
 
