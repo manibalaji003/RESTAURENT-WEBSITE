@@ -19,10 +19,34 @@ router.post('/',async (req,res)=>{
     user = await user.save();
     if(!user){
         res.status(500).json({
+            message: "Unable to create user!",
+            success: false
+        })
+    }res.status(201).send(user); 
+})
+
+router.post('/register',async (req,res)=>{
+    let user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        passwordHash : bcrypt.hashSync(req.body.password,10),
+        apartment: req.body.apartment,
+        street : req.body.street,
+        city: req.body.city,
+        pincode: req.body.pincode,
+        phone: req.body.phone,
+        isAdmin: req.body.isAdmin
+    })
+    user = await user.save();
+    if(!user){
+        res.status(500).json({
+            message: "Unable to create user!",
             success: false
         })
     }res.status(201).send(user);
 })
+
+
 router.post('/login',async (req,res)=>{
     const user = await User.findOne({email: req.body.email}) 
     if(!user){
