@@ -106,7 +106,7 @@ return;
   }
 
   try{
-    let response=await axios.post("http://localhost:3300/api/v1/users",userData);
+    let response=await axios.post("http://localhost:3300/api/v1/users/register",userData);
     
    
     console.log(response.data);
