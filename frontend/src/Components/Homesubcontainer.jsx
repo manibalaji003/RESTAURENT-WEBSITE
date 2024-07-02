@@ -8,7 +8,7 @@ const  Homesub= () => {
             <Col sm={4}>
                 <Container className='homesub1 d-flex justify-content-center'>
                <p> "Your favorite dishes, delivered hot and fresh." <br/>
-                <span className='ordernow'><span className='order'>Order</span> <span className='now'>now!</span></span></p>
+                <span className='ordernow'><span className='order '>Order</span> <span className='now'>now!</span></span></p>
                 </Container>
             </Col>
             <Col sm={8}>

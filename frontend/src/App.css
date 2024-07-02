@@ -23,10 +23,11 @@
 }
 .homesub1{
  padding: 3%;
+ font-weight: bolder;
  box-shadow: inset;
  border: 1px solid rgb(231, 209, 209);
   text-align: center;
-  background-color: rgba(224, 213, 213, 0.623);
+  background-color: rgba(240, 228, 228, 0.623);
   border-radius: 1rem;
 }
 
@@ -36,6 +37,7 @@
 }
 .homesub1 .ordernow .order{
  color: rgb(148, 4, 4);
+ filter: drop-shadow(0 0 4px crimson);
 }
 .homesub1 .ordernow .now{
   color: black;
