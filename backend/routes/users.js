@@ -34,8 +34,7 @@ router.post('/register',async (req,res)=>{
         street : req.body.street,
         city: req.body.city,
         pincode: req.body.pincode,
-        phone: req.body.phone,
-        isAdmin: req.body.isAdmin
+        phone: req.body.phone
     })
     user = await user.save();
     if(!user){
@@ -57,7 +56,7 @@ router.post('/login',async (req,res)=>{
     }
     if(user && bcrypt.compareSync(req.body.password, user.passwordHash)){
         const secret = process.env.JWT_SECRET
-        const token = jwt.sign({id : user.id},secret,{expiresIn: '1d'})
+        const token = jwt.sign({id : user._id, isAdmin: user.isAdmin},secret,{expiresIn: '1d'})
         return res.status(200).json({
             success: true,
             token: token

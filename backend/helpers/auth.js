@@ -10,7 +10,8 @@ const authJwt=()=>{
     }).unless({
         path: [
             {url: /\/api\/v1\/items(.*)/ , methods: ['GET', 'OPTIONS'] },
-            `${api}/users/login`
+            {url: '/api/v1/users/login' , methods:['POST']},
+            `${api}/users/register`
         ]
     })
 }
