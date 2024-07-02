@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Card, Button } from 'react-bootstrap';
 import Header from '../Components/Header';
-import {ThreeCircles} from 'react-loader-spinner'
+import {MagnifyingGlass} from 'react-loader-spinner'
 
 const StarRating = ({ count }) => {
   const stars = Array.from({ length: count }, (_, index) => (
@@ -36,14 +36,15 @@ const Menu = () => {
   if (loading) {
     return( 
     <div className='loader'>
-        <ThreeCircles
+        <MagnifyingGlass
   visible={true}
   height="100"
   width="100"
-  color="#4fa94d"
-  ariaLabel="three-circles-loading"
+  ariaLabel="magnifying-glass-loading"
   wrapperStyle={{}}
-  wrapperClass=""
+  wrapperClass="magnifying-glass-wrapper"
+  glassColor="#026d30" 
+  color="#05843"
   />
     </div>);
   }
