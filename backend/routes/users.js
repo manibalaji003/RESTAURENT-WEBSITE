@@ -28,10 +28,13 @@ const jwt = require('jsonwebtoken')
 router.post('/register',async (req,res)=>{
     let user = await User.findOne({email: req.body.email})
     if(user){
-        return res.status(400).json({
-            message: "User already exists!",
+        const response_data = {
+            user_data: user,
+            message:"User already exists!",
             success: false
-        })
+        
+        }
+        return res.status(400).json(response_data)
     }
     user = new User({
         name: req.body.name,
@@ -45,14 +48,17 @@ router.post('/register',async (req,res)=>{
     })
     user = await user.save();
     if(!user){
-        res.status(500).json({
+        return res.status(500).json({
             message: "Unable to create user!",
             success: false
         })
-    }res.status(201).json({
+    }
+    const response_data ={
+        user_data: user,
         message: "User creation successful",
         success: true
-    });
+    }
+    return res.status(201).json(response_data);
 })
 
 
