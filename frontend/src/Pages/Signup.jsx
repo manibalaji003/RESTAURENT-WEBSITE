@@ -21,6 +21,19 @@ const Signup = () => {
 
   const [confirmpass, setConfirmPass]=useState({'confirmpass':""});
 
+const Alert =(a,b,c)=>{
+
+      return (
+        Swal.fire({
+          icon: a,
+          title: b,
+          text: c
+        })
+      );
+};
+
+
+
   const Getnewdata=(e)=>{
        
     const {name,value}=e.target;
@@ -107,8 +120,9 @@ return;
 
   try{
     let response=await axios.post("http://localhost:3300/api/v1/users/register",userData);
-    
-   
+    if(response.data.message=="User creation successful"){
+    Alert("success",response.data.message,"Account is created successfully");
+    }
     console.log(response.data);
     }catch(e){
       console.error(e);
