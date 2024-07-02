@@ -7,7 +7,7 @@ const Signup = () => {
 
   const [userData,setUserData]=useState(
     {
-      'username':'',
+      'name':'',
       'email':"",
       "password":"",
       "Apartment":"",
@@ -51,14 +51,14 @@ const checkpin=(data)=>{
 const handlingForm = async (e) =>{
   e.preventDefault();
 
-  if(!userData.email || !userData.username || !userData.Apartment || !userData.Street || !userData.password || !userData.phone || !userData.pincode || !confirmpass.confirmpass){
+  if(!userData.email || !userData.name || !userData.Apartment || !userData.Street || !userData.password || !userData.phone || !userData.pincode || !confirmpass.confirmpass){
 
     if(!userData.email){
         alert("Email must not be empty");
         return;
     }
-    if(!userData.username){
-      alert("username must not be empty")
+    if(!userData.name){
+      alert("name must not be empty")
       return;
   }
   if(!userData.password){
@@ -125,8 +125,8 @@ return;
               <Form onSubmit={handlingForm}>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-        <Form.Label>UserName<super>*</super></Form.Label>
-          <Form.Control type="text" placeholder="Enter username . . ."  name='username' value={userData.username}  onChange={Getnewdata}/>
+        <Form.Label>Username<super>*</super></Form.Label>
+          <Form.Control type="text" placeholder="Enter name . . ."  name='name' value={userData.name}  onChange={Getnewdata}/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridText">
