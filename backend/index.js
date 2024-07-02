@@ -18,7 +18,8 @@ const {errorHandler} = require('./helpers/error-handlers');
 app.use(cors({origin:"*"}));
 app.use(express.json());
 app.use(morgan('tiny'));
-app.use(authJwt());
+
+//app.use(authJwt());
 app.use(errorHandler);
 
 
