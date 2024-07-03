@@ -6,7 +6,7 @@ const Review = () => {
 
   return (
     <>
-        <div className='review d-flex justify-content-center'>
+        <div className='review'>
             <Container  className='allreview'>
                 <Card style={{ width: '14rem' }}>
                         <Card.Body>

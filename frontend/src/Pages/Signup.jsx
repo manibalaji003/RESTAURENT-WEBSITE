@@ -61,6 +61,11 @@ const checkpin=(data)=>{
   return param.test(data);
 }
 
+const checkphone = (data)=>{
+  const param=new RegExp(/^[6-9]\d{9}$/);
+  return param.test(data);
+}
+
 const handlingForm = async (e) =>{
   e.preventDefault();
 
@@ -116,6 +121,10 @@ return;
   if(!checkpin(userData.pincode)){
       alert("invalid pin");
       return ;
+  }
+  if(!checkphone(userData.phone)){
+    alert("invalid phone number");
+    return;
   }
 
   try{
