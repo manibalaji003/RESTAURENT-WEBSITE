@@ -4,18 +4,21 @@ import { Container, Image } from 'react-bootstrap'
 import Footer from '../Components/Footer'
 import Special from '../Components/Special'
 import Review from '../Components/Review'
-import Homesub from '../Components/Homesubcontainer'
+import HImage from '../assets/homepagefood.png'
 
 
 const Home = () => {
   return (
     <>
          
-       <div className='imagecontainer'>
+       
        <Header /> 
 
-       </div>
-       <div> <Homesub /></div>
+       
+       
+       <Image src={HImage} className='imagecontainer'/>
+      
+       
       
        <div>
           <center><h3>Why you'll love - - - - - - -  </h3></center>
@@ -34,7 +37,7 @@ const Home = () => {
        <hr />
        <div className='aboutcontact'>
         <Container className='aboutus'>
-        <h3>About Us</h3>
+        <h4>About Us</h4>
        
 
 Welcome to [Your Restaurant Name], a culinary gem in the heart of [City/Location]. Founded in [Year], we are dedicated to creating exquisite dishes using the finest, freshest ingredients. Our menu blends classic favorites with innovative creations, celebrating local produce and suppliers.
@@ -46,7 +49,7 @@ Join us at [Your Restaurant Name] and discover a dining experience that delights
        
        
             <Container className='address'>
-          <h3>Contact us</h3>
+          <h4>Contact us</h4>
                 <p>EMAIL:  <span>manibalaji22003@gmail.com</span></p>
                 <p>PHONE NO:  <span>123467890</span></p>
                 <p>ADDRESS:  <address>1/3 vivekanda street, dubai main road Dubai </address></p>

@@ -6,8 +6,8 @@ const Review = () => {
 
   return (
     <>
-        <div className='review'>
-            <Container  className='allreview'>
+        <div className='review '>
+            <div  className='allreview'>
                 <Card style={{ width: '14rem' }}>
                         <Card.Body>
                                 <Card.Title>Card Title</Card.Title>
@@ -18,8 +18,8 @@ const Review = () => {
                                  </Card.Text>
                           </Card.Body>
                 </Card>
-            </Container>
-            <Container className='allreview' >
+            </div>
+            <div className='allreview' >
                         <Card style={{ width: '14rem' }}>
                         <Card.Body>
                                 <Card.Title>Card Title</Card.Title>
@@ -30,8 +30,8 @@ const Review = () => {
                                  </Card.Text>
                           </Card.Body>
                 </Card>
-            </Container>
-            <Container className='allreview' >
+            </div>
+            <div className='allreview' >
                         <Card style={{ width: '14rem' }}>
                         <Card.Body>
                                 <Card.Title>Card Title</Card.Title>
@@ -42,8 +42,8 @@ const Review = () => {
                                  </Card.Text>
                           </Card.Body>
                 </Card>
-            </Container>
-            <Container className='allreview' >
+            </div>
+            <div className='allreview' >
                         <Card style={{ width: '14rem' }}>
                         <Card.Body>
                                 <Card.Title>Card Title</Card.Title>
@@ -54,9 +54,9 @@ const Review = () => {
                                  </Card.Text>
                           </Card.Body>
                 </Card>
-            </Container>
+            </div>
             
-            <Container className='allreview' >
+            <div className='allreview' >
                         <Card style={{ width: '14rem' }}>
                         <Card.Body>
                                 <Card.Title>Card Title</Card.Title>
@@ -67,7 +67,7 @@ const Review = () => {
                                  </Card.Text>
                           </Card.Body>
                 </Card>
-            </Container>
+            </div>
 
         </div>
     </>

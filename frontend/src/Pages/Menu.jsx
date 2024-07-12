@@ -6,7 +6,7 @@ import {MagnifyingGlass} from 'react-loader-spinner'
 
 const StarRating = ({ count }) => {
   const stars = Array.from({ length: count }, (_, index) => (
-    <i key={index} className="bi bi-star-fill" style={{ color: 'rgb(218,165,32)' }}></i>
+  <span> <i key={index} className="bi bi-star-fill" style={{ color: 'rgb(218,165,32)' }}></i>&nbsp;</span>
   ));
   return <span>{stars}</span>;
 };
