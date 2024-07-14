@@ -1,8 +1,15 @@
 const {User} = require('../models/users')
+const {authenticateToken} =require('../helpers/auth')
 const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
+const generateToken=(userId, isAdmin)=>{
+    const secret = process.env.JWT_SECRET
+    const token = jwt.sign({userId, isAdmin}, secret, {expiresIn: '1d'});
+    return token;
+}
 
 // router.post('/',async (req,res)=>{
 //     let user = new User({
@@ -32,7 +39,6 @@ router.post('/register',async (req,res)=>{
             user_data: user,
             message:"User already exists!",
             success: false
-        
         }
         return res.status(400).json(response_data)
     }
@@ -71,11 +77,13 @@ router.post('/login',async (req,res)=>{
         })
     }
     if(user && bcrypt.compareSync(req.body.password, user.passwordHash)){
-        const secret = process.env.JWT_SECRET
-        const token = jwt.sign({id : user._id, isAdmin: user.isAdmin},secret,{expiresIn: '1d'})
+        
+        // const token = jwt.sign({id : user._id, isAdmin: user.isAdmin},secret,{expiresIn: '1d'})
+        const token = generateToken(user._id, user.isAdmin);
         return res.status(200).json({
             success: true,
-            token: token
+            token: token,
+            user: user
         })
     }
     res.status(500).json({
@@ -84,6 +92,10 @@ router.post('/login',async (req,res)=>{
     })
     
 })
+
+router.get('/check',authenticateToken, async (req,res)=>{
+    res.status(200).json(req.user);
+}) 
 router.get('/',async (req,res)=>{
     const user = await User.find()
     res.status(200).json(user)

@@ -1,27 +1,25 @@
-const expressJwt = require('express-jwt')
+const jwt = require('jsonwebtoken');
 
-const authJwt=()=>{
+const authenticateToken= async (req,res,next)=>{
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+    if(!token){
+        return res.status(401).json({
+            success: false,
+            error: "No token found!"
+        })
+    }
     const secret = process.env.JWT_SECRET;
-    const api = process.env.API_URL;
-    return  expressJwt({
-        secret,
-        algorithms: ['HS256'],
-        isRevoked: isRevoked
-    }).unless({
-        path: [
-            {url: /\/api\/v1\/items(.*)/ , methods: ['GET', 'OPTIONS'] },
-            {url: '/api/v1/users/login' , methods:['POST']},
-            `${api}/users/register`
-        ]
+    jwt.verify(token, secret, (err,user)=>{
+        if(err){
+            return res.status(403).json({
+                success: false,
+                error: "Invalid Token!"
+            })
+        }
+        req.user=user;
+        next();
     })
 }
 
-async function isRevoked(req, payload, done) {
-    if(!payload.isAdmin) {
-        done(null, true)
-    }
-
-    done();
-}
-
-module.exports.authJwt = authJwt; 
+module.exports.authenticateToken = authenticateToken; 
