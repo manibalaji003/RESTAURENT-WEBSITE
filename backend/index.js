@@ -11,6 +11,7 @@ const itemsRouter = require('./routes/items');
 const usersRouter = require('./routes/users');
 const ordersRouter = require('./routes/orders');
 const orderItemsRouter = require('./routes/orderItems');
+const cartRouter = require('./routes/cart');
 // const {authJwt} = require('./helpers/auth');
 const {errorHandler} = require('./helpers/error-handlers');
 
@@ -27,6 +28,7 @@ app.use(`${api}/items`,itemsRouter);
 app.use(`${api}/users`,usersRouter);
 app.use(`${api}/orders`, ordersRouter);
 app.use(`${api}/orderitems`, orderItemsRouter);
+app.use(`${api}/cart`,cartRouter);
 
 //database
 mongoose.connect(process.env.CONNECTION_STRING)
