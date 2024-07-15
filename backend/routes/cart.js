@@ -1,7 +1,8 @@
 const express = require('express')
 const {Cart} = require('../models/cart');
 const {OrderItem} = require('../models/orderItems')
-const { authenticateToken } = require('../helpers/auth');
+const {Item} = require('../models/items');
+const {authenticateToken} = require('../helpers/auth');
 const router = express.Router();
 
 router.get('/',authenticateToken, async (req,res)=>{
@@ -19,21 +20,38 @@ router.get('/',authenticateToken, async (req,res)=>{
 router.post('/',authenticateToken,async (req,res)=>{
     const userId = req.user.userId;
     let orderItemId;
+    let productPrice;
+
+    // fetching price of the product
+    await Item.findOne({name: req.body.itemName})
+    .then((obj)=>{
+        productPrice=obj.price;
+    }).catch((err)=>{
+        return res.status(404).json(err);
+    })
+
+    // creating New OrderItem
     await new OrderItem({
         name: req.body.itemName,
-        qty: req.body.qty
+        price: productPrice
     }).save().then((savedObj)=>{
         orderItemId = savedObj._id;
     }).catch((err)=>{
         console.log("Error: "+err);
         return res.json(err);
     });
+
+    // checking if cart already exists for the user
+    // and if not create new cart for the user
     const cart =await Cart.findOne({user: userId});
     if(cart){
         let orderItemIds=cart.orderItems;
         orderItemIds.push(orderItemId);
+        let price=cart.totalPrice;
+        price+=productPrice;
         await Cart.findByIdAndUpdate(cart._id,{
-            orderItems: orderItemIds
+            orderItems: orderItemIds,
+            totalPrice: price
         }).then((savedObj)=>{
             return res.status(200).json({
                 success: true,
@@ -45,10 +63,11 @@ router.post('/',authenticateToken,async (req,res)=>{
                 err
             })
         })
-    }else{
+    }else{ 
         await new Cart({
             user: userId,
-            orderItems: [orderItemId]
+            orderItems: [orderItemId],
+            totalPrice: productPrice
         }).save().then((savedObj)=>{
             return res.status(200).json({
                 success: true,
