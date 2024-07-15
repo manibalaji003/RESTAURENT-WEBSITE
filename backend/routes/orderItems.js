@@ -17,7 +17,8 @@ router.get('/',(req,res)=>{
 })
 router.post('/',(req,res)=>{
     const orderItem = new OrderItem({
-        name: req.body.name
+        name: req.body.name,
+        qty: req.body.qty
     })
     orderItem.save().then((obj)=>{
         res.status(201).json(Object)
