@@ -1,6 +1,6 @@
 .navibar{
   background-color: whitesmoke;
-  box-shadow: 5px 5px 40px  black;
+  box-shadow: 2px 2px  40px black;
   border: 1px solid black;
 }
 
@@ -127,11 +127,13 @@ h3,h2{
 .pricetag{
   font-size: 1.2rem;
 }
-.menu-category Button{
+.menu-category .btnadd{
   background-image: linear-gradient(to right top, #026d30, #05843c, #089b49, #0bb357, #0dcc65, #0bd466, #0bdb68, #0be369, #09db5d, #08d351, #07cc44, #06c437);
   border-color: rgb(0, 0, 0);
-  
+}
 
+.menu-category .btnremove{
+  background-color: red !important;
 }
 
 .logincontainer{
@@ -167,4 +169,28 @@ border: none;
 background-image: linear-gradient(to right top, #076d21, #0f8f2d, #19b33a, #24d946, #31ff53);
 border: none;
 
+}
+
+
+.cartcontainer{
+  
+  margin: 2%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: left;
+
+}
+
+.cartcontainer .cartimgcontainer{
+  max-width: 150px;
+  max-height: 100px;
+  background: #026d30;
+}
+
+.cartcontainer .cartimgcontainer img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
