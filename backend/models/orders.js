@@ -5,12 +5,11 @@ const orderSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'orderItems',
         required: true
-    }],
-    // user: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'users',
-    //     required: true
-    // },
+    }],user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
+    },
     address: {
         type: String,
         required: true

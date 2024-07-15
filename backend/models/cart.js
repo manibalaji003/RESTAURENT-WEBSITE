@@ -10,7 +10,11 @@ const cartSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'orderItems',
         required: true
-    }]
+    }],
+    totalPrice: {
+        type: Number,
+        required: true
+    }
 })
 
 module.exports.Cart = mongoose.model('cart',cartSchema);
