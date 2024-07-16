@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useContext, useState, useCallback } from 'react';
 import axios from 'axios';
 import { Container, Card, Button } from 'react-bootstrap';
 import Header from '../Components/Header';
@@ -11,9 +11,10 @@ const StarRating = ({ count }) => {
   return <span>{stars}</span>;
 };
 
-const Menu = ({ cart, setCart }) => {
+const Menu = ({cart,setCart}) => {
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,13 +30,14 @@ const Menu = ({ cart, setCart }) => {
     fetchData();
   }, []);
 
-  const addCart = useCallback((item) => {
+  const addCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
-  }, [setCart]);
+  };
+  console.log(cart);
 
-  const removeCart = useCallback((item) => {
-    setCart((prevCart) => prevCart.filter((c) => c.id !== item.id));
-  }, [setCart]);
+  const removeCart = (item) => {
+    setCart((prevCart) => prevCart.filter((c) => c.name !== item.name));
+  }
 
   if (loading) {
     return (
@@ -62,7 +64,7 @@ const Menu = ({ cart, setCart }) => {
           <div className="menu-category">
             <hr />
             {itemData[category].map(item => (
-              <Card key={item.id} style={{ width: '18rem', margin: '1rem' }}>
+              <Card key={item.id} style={{ width: '18rem'}}>
                 <Card.Img variant="top" src={item.image} width={150} height={150} />
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
