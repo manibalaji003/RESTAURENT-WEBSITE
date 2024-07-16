@@ -11,7 +11,8 @@ const StarRating = ({ count }) => {
   return <span>{stars}</span>;
 };
 
-const Menu = ({cart,setCart}) => {
+const Menu = () => {
+  const [cart, setCart] = useState([]);
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
   const tokenkey=sessionStorage.getItem("Logintoken");
@@ -33,12 +34,15 @@ const Menu = ({cart,setCart}) => {
 
   const addCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
-   axios.post("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
-  };
+  let respose= axios.post("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
+    let res=respose;
+    console.log(res);
+};
   console.log(cart);
 
   const removeCart = (item) => {
     setCart((prevCart) => prevCart.filter((c) => c.name !== item.name));
+    let respose= axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
   }
 
   if (loading) {

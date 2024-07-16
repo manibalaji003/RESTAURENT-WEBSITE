@@ -173,6 +173,12 @@ border: none;
 
 }
 
+.cartmaincontainer{
+  margin: 5%;
+  padding: 1rem;
+  border: 2px solid rgba(0, 0, 0, 0.781);
+  background-color: whitesmoke;
+}
 
 .cartcontainer{
   
@@ -181,11 +187,12 @@ border: none;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: left;
-
+  justify-content: center;
+  align-items: center;
 }
 
 .cartcontainer .cartimgcontainer{
+ 
   max-width: 100px;
   max-height: 100px;
   background: #026d30;

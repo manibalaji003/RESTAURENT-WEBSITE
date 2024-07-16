@@ -9,7 +9,7 @@ import Header from './Components/Header';
 import './App.css';
 
 function App() {
-  const [cart, setCart] = useState([]);
+ 
 
   return (
     <Router>
@@ -17,8 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/loginpage" element={<LoginPage />} />
-        <Route path="/menu" element={<Menu cart={cart} setCart={setCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/menu" element={<Menu  />} />
+        <Route path="/cart" element={<Cart  />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
