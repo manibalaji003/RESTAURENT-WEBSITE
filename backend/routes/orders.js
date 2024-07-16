@@ -17,10 +17,9 @@ router.get('/', async (req,res)=>{
 router.post('/', authenticateToken, async(req,res)=>{
     const userId = req.user.userId;
     let orderItemIds=[];
-    let totalPrice;
+    let totalPrice=0;
 
     // fetching orderItem Id's
-    // and total price
     const cart = await Cart.findOne({user: userId})
     if(!cart){
         return res.status(404).json({
@@ -29,7 +28,6 @@ router.post('/', authenticateToken, async(req,res)=>{
         })
     }else{
         orderItemIds = cart.orderItems;
-        totalPrice = cart.totalPrice;
     }
 
     // fetching user details
@@ -39,6 +37,23 @@ router.post('/', authenticateToken, async(req,res)=>{
             message: "Error fetching user",
             success: false
         })
+    }
+
+    // updating cart orderitems with new quantity
+    qtyObjArr = req.body.qtyObjArr;
+    for(let ind=0;ind<orderItemIds.length;ind++){
+        let orderItem=await OrderItem.findById(orderItemIds[ind])
+        let qty;
+        for(qtyObj of qtyObjArr){
+            if(qtyObj.name==orderItem.name){
+                qty=qtyObj.qty;
+            }
+        }
+        await OrderItem.findByIdAndUpdate(orderItemIds[ind],{
+            qty: qty,
+            price: orderItem.price*qty
+        })
+        totalPrice+=orderItem.price*qty
     }
 
     // creating new order with user details
