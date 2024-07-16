@@ -14,8 +14,9 @@ const StarRating = ({ count }) => {
 const Menu = ({cart,setCart}) => {
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
-
-
+  const tokenkey=sessionStorage.getItem("Logintoken");
+  let key=JSON.parse(tokenkey); 
+  // console.log(tokenkey);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,6 +33,7 @@ const Menu = ({cart,setCart}) => {
 
   const addCart = (item) => {
     setCart((prevCart) => [...prevCart, item]);
+   axios.post("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
   };
   console.log(cart);
 
