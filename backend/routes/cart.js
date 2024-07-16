@@ -22,6 +22,19 @@ router.post('/',authenticateToken,async (req,res)=>{
     let orderItemId;
     let productPrice;
 
+    // check if item already in cart
+    const cart =await Cart.findOne({user: userId}).populate('orderItems');
+    if(cart){
+        for(orderItemId of cart.orderItems){
+            if(orderItemId.name == req.body.itemName){
+                return res.status(200).json({
+                    message: "item already exists",
+                    success: false
+                })
+            }
+        }
+    }
+
     // fetching price of the product
     await Item.findOne({name: req.body.itemName})
     .then((obj)=>{
@@ -43,7 +56,6 @@ router.post('/',authenticateToken,async (req,res)=>{
 
     // checking if cart already exists for the user
     // and if not create new cart for the user
-    const cart =await Cart.findOne({user: userId});
     if(cart){
         let orderItemIds=cart.orderItems;
         orderItemIds.push(orderItemId);
