@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 const Cart = () => {
   let tokencartkey = sessionStorage.getItem("Logintoken");
   let key1 = JSON.parse(tokencartkey);
-
+//console.log(key1.token);
   const [cartData, setCartData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
@@ -17,6 +17,7 @@ const Cart = () => {
         const response = await axios.get('http://localhost:3300/api/v1/cart', {
           headers: { "Authorization": `Bearer ${key1.token}` }
         });
+        console.log(response);
         setCartData(response.data.orderItems);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -48,7 +49,7 @@ const Cart = () => {
 
   const RemoveCart =async (item) =>{
     setCartData((prevCart) => prevCart.filter((c) => c.name !== item.name));
-    let respose=await  axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
+    await  axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
     console.log(cartData);
   }
 
