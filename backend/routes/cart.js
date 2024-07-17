@@ -91,5 +91,31 @@ router.post('/',authenticateToken,async (req,res)=>{
     }
 })
 
+router.delete('/',authenticateToken, async(req,res)=>{
+    const userId = req.user.userId;
+    let itemId;
 
+    // fetching item id to be deleted
+    await Cart.findById({user: userId}).populate('orderItems')
+    .then((obj)=>{
+        for(orderItem of obj.orderItems){
+            if(orderItem.name == req.body.itemName){
+                itemId = orderItem._id;
+                break;
+            }
+        }
+    }).catch((err)=>{
+        return res.status(200).json(err);
+    })
+
+    // removing item from cart
+    await Cart.updateOne({user: userId},{
+        $pull: {orderItems: itemId}
+    },{new:true}).then((obj)=>{
+        res.status(200).json(obj);
+    })
+
+    //
+
+})
 module.exports = router;

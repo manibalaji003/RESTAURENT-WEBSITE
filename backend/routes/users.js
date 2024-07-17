@@ -71,7 +71,7 @@ router.post('/register',async (req,res)=>{
 router.post('/login',async (req,res)=>{
     const user = await User.findOne({email: req.body.email}) 
     if(!user){
-        return res.status(500).json({
+        return res.status(200).json({
             error: "User not found!",
             success: false
         })
@@ -86,7 +86,7 @@ router.post('/login',async (req,res)=>{
             user: user
         })
     }
-    res.status(500).json({
+    res.status(200).json({
         error: "Email or Password is wrong!",
         success: false
     })
