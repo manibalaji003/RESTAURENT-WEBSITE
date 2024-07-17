@@ -49,13 +49,14 @@ const Cart = () => {
 
   const RemoveCart =async (item) =>{
     setCartData((prevCart) => prevCart.filter((c) => c.name !== item.name));
-    await  axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
+    let respose=await  axios.post("http://localhost:3300/api/v1/cart/remove",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
     console.log(cartData);
   }
 
   const checkoutcart =async () =>{
-    let response=await axios.post("http://localhost:3300/api/v1/cart",{"cartData": cartData},{headers:{"Authorization": `Bearer ${key1.token}`}})
-    console.log(response);
+    //console.log(cartData);
+     let response=await axios.post("http://localhost:3300/api/v1/orders",{"qtyObjArr": cartData},{headers:{"Authorization": `Bearer ${key1.token}`}})
+     console.log(response);
   }
 
 
@@ -100,7 +101,7 @@ const Cart = () => {
         
       </Container>
       <Container className='checkout'>
-          <Button  onClick={()=>{checkoutcart}}><i className="bi bi-bookmark-check-fill"></i>View Checkout</Button>
+          <Button  onClick={()=>{checkoutcart()}}><i className="bi bi-bookmark-check-fill"></i>View Checkout</Button>
       </Container>
       </Container>
     </Container>

@@ -89,7 +89,7 @@ router.post('/',authenticateToken,async (req,res)=>{
     }
 })
 
-router.delete('/',authenticateToken, async(req,res)=>{
+router.post('/remove',authenticateToken, async(req,res)=>{
     const userId = req.user.userId;
     let itemId; // id of item to be deleted
 

@@ -66,7 +66,7 @@ const Menu = () => {
       navigate("/loginpage")
     }
   }
-    console.log(respose);
+  
 };
   console.log(cart);
 
