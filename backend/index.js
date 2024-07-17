@@ -12,14 +12,14 @@ const usersRouter = require('./routes/users');
 const ordersRouter = require('./routes/orders');
 const orderItemsRouter = require('./routes/orderItems');
 const cartRouter = require('./routes/cart');
-// const {authJwt} = require('./helpers/auth');
+const {imagesRouter} = require('./routes/images')
 const {errorHandler} = require('./helpers/error-handlers');
 
 //middleware
 app.use(cors({origin:"*"}));
 app.use(express.json());
 app.use(morgan('tiny'));
-// app.use(authJwt());
+app.use('/images',express.static(__dirname+'/images'));
 app.use(errorHandler);
 
 
@@ -29,6 +29,8 @@ app.use(`${api}/users`,usersRouter);
 app.use(`${api}/orders`, ordersRouter);
 app.use(`${api}/orderitems`, orderItemsRouter);
 app.use(`${api}/cart`,cartRouter);
+app.use(`${api}/images`,imagesRouter);
+
 
 //database
 mongoose.connect(process.env.CONNECTION_STRING)

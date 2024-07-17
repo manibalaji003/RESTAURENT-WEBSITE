@@ -6,10 +6,13 @@ const {authenticateToken} = require('../helpers/auth')
 const express = require('express')
 const router = express.Router();
 
-router.get('/', async (req,res)=>{
-    const order = await Order.find().populate('orderItems');
+router.get('/',authenticateToken, async (req,res)=>{
+    const order = await Order.find({user: req.user.userId}).populate('orderItems');
     if(!order){
-        res.status(500).json({success: false})
+        res.status(500).json({
+            success: false,
+            message: "No orders"
+        })
     } 
     res.json(order)
 })
