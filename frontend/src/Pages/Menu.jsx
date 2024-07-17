@@ -11,11 +11,13 @@ const StarRating = ({ count }) => {
   return <span>{stars}</span>;
 };
 
-const Menu = ({cart,setCart}) => {
+const Menu = () => {
+  const [cart, setCart] = useState([]);
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
-
-
+  const tokenkey=sessionStorage.getItem("Logintoken");
+  let key=JSON.parse(tokenkey); 
+  // console.log(tokenkey);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,13 +32,21 @@ const Menu = ({cart,setCart}) => {
     fetchData();
   }, []);
 
-  const addCart = (item) => {
-    setCart((prevCart) => [...prevCart, item]);
-  };
+  const addCart =async (item) => {
+   
+  let respose= await axios.post("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
+    if(respose.data.message!=="item already exists"){
+      setCart((prevCart) => [...prevCart, item]);
+    }else{
+      alert("Unable to insert");
+    }
+    console.log(respose);
+};
   console.log(cart);
 
   const removeCart = (item) => {
     setCart((prevCart) => prevCart.filter((c) => c.name !== item.name));
+    let respose= axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
   }
 
   if (loading) {
@@ -80,11 +90,8 @@ const Menu = ({cart,setCart}) => {
                   <Container className='d-flex justify-content-end'>
                     <Container className='d-flex justify-content-between ' style={{ marginBottom: '0px' }}>
                       <b className='pricetag'>&#8377; {item.price.toFixed(2)}</b>
-
-                      {cart.includes(item) ?
-                        <Button className='btnremove' onClick={() => removeCart(item)}>Remove</Button> :
                         <Button className='btnadd' onClick={() => addCart(item)}>Add to cart</Button>
-                      }
+                      
                     </Container>
                   </Container>
                 </Card.Body>

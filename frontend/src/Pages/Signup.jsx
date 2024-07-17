@@ -141,8 +141,6 @@ return;
 
   return (
     <div>
-            <Header />
-
             <Container  className='signupcontainer'>
                 <center><h2>SIGN UP</h2></center>
               <Form onSubmit={handlingForm}>

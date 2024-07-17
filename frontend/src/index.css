@@ -9,6 +9,8 @@ html,body{
 }
 
 body{
-    background-image: url('./assets/homebg1.png');
+    background-image: url('./assets/appbg.png');
+    background-size: cover;
+   
 
 }

@@ -4,7 +4,7 @@ import { Container, Image } from 'react-bootstrap'
 import Footer from '../Components/Footer'
 import Special from '../Components/Special'
 import Review from '../Components/Review'
-import HImage from '../assets/homepagefood.png'
+import HImage from '../assets/bghome.png'
 
 
 const Home = () => {

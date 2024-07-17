@@ -3,9 +3,12 @@ import Header from '../Components/Header'
 import { Button, Container ,FloatingLabel,Form} from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
+import UseSessionStorage from '../Hooks/Storage'
 const LoginPage = () => {
 
+
+
+ // const [sessionStorageValue, setSessionStorageValue] = UseSessionStorage('mySessionStorageKey', 'default');  
     const [Lformdata,setFormData]=useState({
         'email':'',
         'password':""
@@ -35,9 +38,11 @@ const HandleFormData = async (e) =>{
         }
         try{
         let response=await axios.post("http://localhost:3300/api/v1/users/login",Lformdata);
-        
-       
-        console.log(response.data);
+       // setSessionStorageValue(response.data)
+       sessionStorage.setItem("Logintoken", JSON.stringify(response.data));
+      //  const tokenkey=sessionStorage.getItem("Logintoken");
+        //let key=JSON.parse(tokenkey);
+        //console.log(key);
         }catch(e){
           console.error(e);
         }
@@ -46,7 +51,7 @@ const HandleFormData = async (e) =>{
 
   return (
     <div>
-            <Header />
+         
             <Container className='logincontainer' >
                <center> <h2>LOGIN</h2></center><br/>
                <Form onSubmit={HandleFormData}>
