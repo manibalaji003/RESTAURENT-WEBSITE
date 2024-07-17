@@ -32,11 +32,15 @@ const Menu = () => {
     fetchData();
   }, []);
 
-  const addCart = (item) => {
-    setCart((prevCart) => [...prevCart, item]);
-  let respose= axios.post("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
-    let res=respose;
-    console.log(res);
+  const addCart =async (item) => {
+   
+  let respose= await axios.post("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
+    if(respose.data.message!=="item already exists"){
+      setCart((prevCart) => [...prevCart, item]);
+    }else{
+      alert("Unable to insert");
+    }
+    console.log(respose);
 };
   console.log(cart);
 
@@ -86,11 +90,8 @@ const Menu = () => {
                   <Container className='d-flex justify-content-end'>
                     <Container className='d-flex justify-content-between ' style={{ marginBottom: '0px' }}>
                       <b className='pricetag'>&#8377; {item.price.toFixed(2)}</b>
-
-                      {cart.includes(item) ?
-                        <Button className='btnremove' onClick={() => removeCart(item)}>Remove</Button> :
                         <Button className='btnadd' onClick={() => addCart(item)}>Add to cart</Button>
-                      }
+                      
                     </Container>
                   </Container>
                 </Card.Body>
