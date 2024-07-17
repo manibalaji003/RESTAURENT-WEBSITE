@@ -46,9 +46,9 @@ const Cart = () => {
   };
 
 
-  const RemoveCart =(item) =>{
+  const RemoveCart =async (item) =>{
     setCartData((prevCart) => prevCart.filter((c) => c.name !== item.name));
-    //let respose= axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
+    let respose=await  axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
     console.log(cartData);
   }
 
