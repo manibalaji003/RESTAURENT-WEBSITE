@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Container, Card, Button } from 'react-bootstrap';
 import Header from '../Components/Header';
 import { MagnifyingGlass } from 'react-loader-spinner';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 const StarRating = ({ count }) => {
   const stars = Array.from({ length: count }, (_, index) => (
@@ -12,12 +14,16 @@ const StarRating = ({ count }) => {
 };
 
 const Menu = () => {
+
+  const navigate=useNavigate();
   const [cart, setCart] = useState([]);
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
+  
   const tokenkey=sessionStorage.getItem("Logintoken");
   let key=JSON.parse(tokenkey); 
-  // console.log(tokenkey);
+
+    // console.log(tokenkey);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,13 +39,33 @@ const Menu = () => {
   }, []);
 
   const addCart =async (item) => {
-   
+   try{
   let respose= await axios.post("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
     if(respose.data.message!=="item already exists"){
       setCart((prevCart) => [...prevCart, item]);
+      Swal.fire({
+        title: "Success",
+        text: "Item added to the cart successfully",
+        icon: "success"
+      });
     }else{
-      alert("Unable to insert");
+      Swal.fire({
+        title: "Exists",
+        text: "Item already exists in the cart ",
+        icon: "error"
+      });
     }
+  }catch{
+    {
+      Swal.fire({
+        title: "please Login to continue",
+        text: "unable to add to cart  please login to continue",
+        icon: "error"
+      
+      }); 
+      navigate("/loginpage")
+    }
+  }
     console.log(respose);
 };
   console.log(cart);

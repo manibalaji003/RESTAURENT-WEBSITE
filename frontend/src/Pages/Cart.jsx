@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import image from '../assets/poster1.png';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const Cart = () => {
   let tokencartkey = sessionStorage.getItem("Logintoken");
@@ -94,7 +95,7 @@ const Cart = () => {
       ))}
       <Container className='amount'>
       <Container className='totalamount'>
-        <h5>Total amount: &#8377; {CalTotalAmount(item.totalPrice)}</h5>
+        <h5>Total amount: &#8377; {cartData.totalPrice}</h5>
         
       </Container>
       <Container className='checkout'>

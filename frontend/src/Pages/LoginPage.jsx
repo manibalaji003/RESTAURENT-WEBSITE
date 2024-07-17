@@ -4,6 +4,10 @@ import { Button, Container ,FloatingLabel,Form} from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import UseSessionStorage from '../Hooks/Storage'
+import Swal from 'sweetalert2'
+
+
+
 const LoginPage = () => {
 
 
@@ -39,12 +43,17 @@ const HandleFormData = async (e) =>{
         try{
         let response=await axios.post("http://localhost:3300/api/v1/users/login",Lformdata);
        // setSessionStorageValue(response.data)
+      if(response.data.success===true){
        sessionStorage.setItem("Logintoken", JSON.stringify(response.data));
-      //  const tokenkey=sessionStorage.getItem("Logintoken");
-        //let key=JSON.parse(tokenkey);
-        //console.log(key);
+      }
+      
+     
         }catch(e){
-          console.error(e);
+          Swal.fire({
+            title: "Error",
+            text: "username or password in incorrect",
+            icon: "error"
+          });
         }
 
 }
