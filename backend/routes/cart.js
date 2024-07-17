@@ -6,8 +6,6 @@ const {authenticateToken} = require('../helpers/auth');
 const router = express.Router();
 
 router.get('/',authenticateToken, async (req,res)=>{
-
-    console.log(req.user.userId);
     const cart = await Cart.findOne({user: req.user.userId}).populate('orderItems')
     if(!cart){
         return res.status(404).json({
@@ -93,13 +91,14 @@ router.post('/',authenticateToken,async (req,res)=>{
 
 router.delete('/',authenticateToken, async(req,res)=>{
     const userId = req.user.userId;
-    let itemId;
+    let itemId; // id of item to be deleted
 
     // fetching item id to be deleted
-    await Cart.findById({user: userId}).populate('orderItems')
+    await Cart.findOne({user: userId}).populate('orderItems')
     .then((obj)=>{
         for(orderItem of obj.orderItems){
             if(orderItem.name == req.body.itemName){
+                console.log("caught");
                 itemId = orderItem._id;
                 break;
             }
@@ -107,15 +106,17 @@ router.delete('/',authenticateToken, async(req,res)=>{
     }).catch((err)=>{
         return res.status(200).json(err);
     })
+    console.log(itemId);
 
     // removing item from cart
     await Cart.updateOne({user: userId},{
         $pull: {orderItems: itemId}
-    },{new:true}).then((obj)=>{
-        res.status(200).json(obj);
+    }).then((obj)=>{
+        return res.status(200).json(obj);
     })
 
-    //
+    // deleting orderItem
+    await OrderItem.findByIdAndDelete(itemId);
 
 })
 module.exports = router;
