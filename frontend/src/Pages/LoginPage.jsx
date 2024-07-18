@@ -8,10 +8,9 @@ import Swal from 'sweetalert2'
 
 
 
-const LoginPage = () => {
+const LoginPage = ({loggedin,isLoggedin}) => {
 
-
-
+  const navigate=useNavigate();
  // const [sessionStorageValue, setSessionStorageValue] = UseSessionStorage('mySessionStorageKey', 'default');  
     const [Lformdata,setFormData]=useState({
         'email':'',
@@ -19,6 +18,7 @@ const LoginPage = () => {
     });
     const [InValid,setInvalid]=useState(false);
   //  const navigate=useNavigate()
+
 
 
 
@@ -45,6 +45,8 @@ const HandleFormData = async (e) =>{
        // setSessionStorageValue(response.data)
       if(response.data.success===true){
        sessionStorage.setItem("Logintoken", JSON.stringify(response.data));
+      isLoggedin(true);
+        navigate("/menu");
       }
       
      

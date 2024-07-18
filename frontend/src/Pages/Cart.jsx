@@ -20,7 +20,7 @@ const Cart = () => {
         console.log(response);
         setCartData(response.data.orderItems);
       } catch (error) {
-        console.error('Error fetching data:', error);
+       // console.error('Error fetching data:', error);
       }
     };
     fetchCartData();

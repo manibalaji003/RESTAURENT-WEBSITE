@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import UseSessionStorage from '../Hooks/Storage';
 
-const Header = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+const Header = ({loggedIn}) => {
+  
 
 
  // const [sesionvalue] = UseSessionStorage('mySessionStorageKey');
@@ -22,15 +22,15 @@ const Header = () => {
     <div>
       <Navbar className='navibar d-flex'>
         <Container>
-          <Navbar.Brand style={{ color: 'black', fontWeight: '600' }}>Restaurant</Navbar.Brand>
+          <Navbar.Brand style={{ color: 'black' }} className='bebas-neue-regular '>FOOD  CORNER</Navbar.Brand>
         </Container>
         <Container className="justify-content-end">
           <Nav>
             <Nav.Link href="" className='navtext' style={{ fontWeight: '600' }}>Home</Nav.Link>
             <Nav.Link href="/menu" className='navtext' style={{ fontWeight: '600' }}>Menu</Nav.Link>
             <Nav.Link href="cart" className='navtext cart' style={{ fontWeight: '600' }}>Cart</Nav.Link>
-            <Nav.Link href="/" style={{ fontWeight: '600' }}>About us</Nav.Link>
-            {loggedIn && <Nav.Link href="loginpage" className='navtext' style={{ fontWeight: '600' }}><span className='loginbutton'>Login</span></Nav.Link>}
+            <Nav.Link href="/orders" style={{ fontWeight: '600' }}>Orders</Nav.Link>
+            {(!loggedIn)? <Nav.Link href="loginpage" className='navtext' style={{ fontWeight: '600' }}><span className='loginbutton'>Login</span></Nav.Link>: <i className="bi bi-person-circle  dashboard navtext"></i>}
           </Nav>
         </Container>
       </Navbar>

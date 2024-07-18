@@ -4,6 +4,21 @@
   border: 1px solid black;
 }
 
+.dashboard{
+  font-size:  1.5rem;
+  padding:  0 2%;
+  font-weight: 900;
+  color: rgb(83, 83, 83);
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  font-style: normal;
+}
+
+
 
 .navtext{
   border-bottom: 2px solid whitesmoke;
@@ -275,3 +290,10 @@ align-items: center;
   
 }
 
+.order{
+  background-color: rgb(180, 177, 177);
+}
+.orderitem{
+  margin: 2% ;
+  border: 2px solid black;
+}

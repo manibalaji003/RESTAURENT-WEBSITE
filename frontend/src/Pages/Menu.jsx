@@ -5,6 +5,7 @@ import Header from '../Components/Header';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
+import {motion} from 'framer-motion'
 
 const StarRating = ({ count }) => {
   const stars = Array.from({ length: count }, (_, index) => (
@@ -95,11 +96,18 @@ const Menu = () => {
   return (
     <>
       {Object.keys(itemData).map(category => (
-        <div key={category}>
+        <motion.div key={category}    >
           <h2>{category}</h2>
-          <div className="menu-category">
+          <div className="menu-category" >
             <hr />
             {itemData[category].map(item => (
+              <motion.div   initial={{ scale: 0 }}
+              animate={{ rotate: 360, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 520,
+                damping: 40
+              }} >
               <Card key={item.id} style={{ width: '18rem'}}>
                 <Card.Img variant="top" src={item.image} width={150} height={150} />
                 <Card.Body>
@@ -122,10 +130,11 @@ const Menu = () => {
                   </Container>
                 </Card.Body>
               </Card>
+              </motion.div>
             ))}
           </div>
           <hr />
-        </div>
+        </motion.div>
       ))}
     </>
   );
