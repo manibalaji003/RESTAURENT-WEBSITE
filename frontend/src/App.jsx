@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home';
 import Menu from './Pages/Menu';
@@ -10,15 +10,15 @@ import './App.css';
 import Order from './Pages/Order';
 
 function App() {
- 
-  const [loggedin,isLoggedin]=useState(false);
+
+
 
   return (
     <Router>
-      <Header  loggedIn={loggedin}/>
+      <Header  />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/loginpage" element={<LoginPage  loggedIn={loggedin}  isLoggedin={isLoggedin}/>} />
+        <Route path="/loginpage" element={<LoginPage   />} />
         <Route path="/menu" element={<Menu  />} />
         <Route path="/cart" element={<Cart  />} />
         <Route path='/orders' element={<Order />} />

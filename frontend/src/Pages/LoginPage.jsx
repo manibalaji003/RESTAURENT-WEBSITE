@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import Header from '../Components/Header'
+/* eslint-disable no-unused-vars */
+import  { useState } from 'react'
 import { Button, Container ,FloatingLabel,Form} from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import UseSessionStorage from '../Hooks/Storage'
 import Swal from 'sweetalert2'
 
 
 
-const LoginPage = ({loggedin,isLoggedin}) => {
+const LoginPage = () => {
 
   const navigate=useNavigate();
  // const [sessionStorageValue, setSessionStorageValue] = UseSessionStorage('mySessionStorageKey', 'default');  
@@ -45,17 +44,20 @@ const HandleFormData = async (e) =>{
        // setSessionStorageValue(response.data)
       if(response.data.success===true){
        sessionStorage.setItem("Logintoken", JSON.stringify(response.data));
-      isLoggedin(true);
+       
         navigate("/menu");
+        window.location.reload(); 
+      }else{
+        Swal.fire({
+          title: "Error",
+          text: "username or password in incorrect",
+          icon: "error"
+        });
       }
       
      
         }catch(e){
-          Swal.fire({
-            title: "Error",
-            text: "username or password in incorrect",
-            icon: "error"
-          });
+          console.log("error");
         }
 
 }

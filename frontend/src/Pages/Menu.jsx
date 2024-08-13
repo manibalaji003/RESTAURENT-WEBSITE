@@ -1,7 +1,8 @@
-import React, { useEffect, useContext, useState, useCallback } from 'react';
+/* eslint-disable react/jsx-key */
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Card, Button } from 'react-bootstrap';
-import Header from '../Components/Header';
+
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
@@ -69,12 +70,7 @@ const Menu = () => {
   }
   
 };
-  console.log(cart);
-
-  const removeCart = (item) => {
-    setCart((prevCart) => prevCart.filter((c) => c.name !== item.name));
-    let respose= axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
-  }
+  
 
   if (loading) {
     return (
