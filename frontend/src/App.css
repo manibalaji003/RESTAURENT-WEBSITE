@@ -226,7 +226,8 @@ align-items: center;
  .cartimage image{
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit:cover;
+  background-color: #3df781;
 }
 
 .quantitycontainer{
