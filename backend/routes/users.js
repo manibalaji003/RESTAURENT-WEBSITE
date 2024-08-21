@@ -97,7 +97,7 @@ router.get('/check',authenticateToken, async (req,res)=>{
     res.status(200).json(req.user);
 }) 
 router.get('/',async (req,res)=>{
-    const user = await User.find()
+    const user = await User.find().select("-_id -__v -passwordHash")
     res.status(200).json(user)
 })
 module.exports = router;

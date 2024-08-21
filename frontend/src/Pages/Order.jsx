@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react'
+import { useState ,useEffect} from 'react'
 import axios from 'axios'
 import { Container } from 'react-bootstrap';
 
@@ -28,12 +28,15 @@ const Order = () => {
  console.log("use state is",orderData);
   return (
     <>
-    <div>
+    <div className='ordercontainer'>
         {orderData.map((order,index)=>(
             <Container className='orderitem' key={index}>
-         {order.orderItems.map((items) => (
-            <p>{items.name}</p>
+              <p style={{margin:'1rem 0rem'}}>
+         {order.orderItems.map((items,index) => (
+            <span key={index} style={{backgroundColor:'grey',margin:'1rem 1rem',padding:'2px'}}>{items.name} </span>
          ))}
+         </p>
+         <br />
            {order.dateOrdered}
 
            {order.dateOrdered}

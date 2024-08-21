@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
 import {motion} from 'framer-motion'
 
+// eslint-disable-next-line react/prop-types
 const StarRating = ({ count }) => {
   const stars = Array.from({ length: count }, (_, index) => (
     <span key={index}><i className="bi bi-star-fill" style={{ color: 'rgb(218,165,32)' }}></i>&nbsp;</span>
@@ -18,6 +19,7 @@ const StarRating = ({ count }) => {
 const Menu = () => {
 
   const navigate=useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [cart, setCart] = useState([]);
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -105,7 +107,7 @@ const Menu = () => {
                 damping: 40
               }} >
               <Card key={item.id} style={{ width: '18rem'}}>
-                <Card.Img variant="top" src={item.image} width={150} height={150} />
+                <Card.Img variant="top" src={item.image} width={150} height={200} style={{borderRadius:'0 0 30%  30%'}}/>
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text>

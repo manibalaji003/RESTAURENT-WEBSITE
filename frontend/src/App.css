@@ -296,6 +296,7 @@ align-items: center;
 .orderitem{
   margin: 2% ;
   border: 2px solid black;
+  background-color: #ced7dad0;
 }
 
 
@@ -303,14 +304,11 @@ align-items: center;
   display: none;
 }
 
-
-
-
-
-
-
 @media screen and (max-width: 900px){
   .navicontain{
     display: none;
+  }
+  .threebar{
+    display: visible;
   }
 }
