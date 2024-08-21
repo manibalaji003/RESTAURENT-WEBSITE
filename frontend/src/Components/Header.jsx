@@ -1,5 +1,5 @@
 import  { useState,useEffect } from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
 const Header = () => {
   
@@ -26,9 +26,9 @@ const Header = () => {
           <Navbar.Brand style={{ color: 'black' }} className='bebas-neue-regular '>FOOD  CORNER</Navbar.Brand>
         </Container>
         <Container className="justify-content-end">
+        <Button className='threebar'><i className="bi bi-justify "></i></Button>
           <Nav className='navicontain'>
-          <i className="bi bi-justify threebar"></i>
-            <Nav.Link href="" className='navtext' style={{ fontWeight: '600' }}>Home</Nav.Link>
+            <Nav.Link href="/" className='navtext' style={{ fontWeight: '600' }}>Home</Nav.Link>
             <Nav.Link href="/menu" className='navtext' style={{ fontWeight: '600' }}>Menu</Nav.Link>
             <Nav.Link href="cart" className='navtext cart' style={{ fontWeight: '600' }}>Cart</Nav.Link>
             <Nav.Link href="/orders" style={{ fontWeight: '600' }}>Orders</Nav.Link>

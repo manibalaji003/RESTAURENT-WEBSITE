@@ -8,6 +8,7 @@ import Cart from './Pages/Cart';
 import Header from './Components/Header';
 import './App.css';
 import Order from './Pages/Order';
+import AdminDashboard from './Pages/AdminDashboard';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/loginpage" element={<LoginPage   />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/menu" element={<Menu  />} />
         <Route path="/cart" element={<Cart  />} />
         <Route path='/orders' element={<Order />} />
