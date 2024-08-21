@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import  { useEffect, useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
-import image from '../assets/poster1.png';
 import axios from 'axios';
-import Swal from 'sweetalert2'
+
 
 const Cart = () => {
   let tokencartkey = sessionStorage.getItem("Logintoken");
@@ -20,7 +20,7 @@ const Cart = () => {
         console.log(response);
         setCartData(response.data.orderItems);
       } catch (error) {
-        console.error('Error fetching data:', error);
+       // console.error('Error fetching data:', error);
       }
     };
     fetchCartData();
@@ -49,8 +49,8 @@ const Cart = () => {
 
   const RemoveCart =async (item) =>{
     setCartData((prevCart) => prevCart.filter((c) => c.name !== item.name));
-    let respose=await  axios.post("http://localhost:3300/api/v1/cart/remove",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
-    console.log(cartData);
+   await  axios.post("http://localhost:3300/api/v1/cart/remove",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key1.token}`}})
+  
   }
 
   const checkoutcart =async () =>{
@@ -101,7 +101,7 @@ const Cart = () => {
         
       </Container>
       <Container className='checkout'>
-          <Button  onClick={()=>{checkoutcart()}}><i className="bi bi-bookmark-check-fill"></i>View Checkout</Button>
+          <Button  onClick={()=>{checkoutcart()}}><i className="bi bi-bookmark-check-fill"></i>Checkout</Button>
       </Container>
       </Container>
     </Container>

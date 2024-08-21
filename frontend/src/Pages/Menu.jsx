@@ -1,11 +1,14 @@
-import React, { useEffect, useContext, useState, useCallback } from 'react';
+/* eslint-disable react/jsx-key */
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Card, Button } from 'react-bootstrap';
-import Header from '../Components/Header';
+
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
+import {motion} from 'framer-motion'
 
+// eslint-disable-next-line react/prop-types
 const StarRating = ({ count }) => {
   const stars = Array.from({ length: count }, (_, index) => (
     <span key={index}><i className="bi bi-star-fill" style={{ color: 'rgb(218,165,32)' }}></i>&nbsp;</span>
@@ -16,6 +19,7 @@ const StarRating = ({ count }) => {
 const Menu = () => {
 
   const navigate=useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [cart, setCart] = useState([]);
   const [itemData, setItemData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -68,12 +72,7 @@ const Menu = () => {
   }
   
 };
-  console.log(cart);
-
-  const removeCart = (item) => {
-    setCart((prevCart) => prevCart.filter((c) => c.name !== item.name));
-    let respose= axios.delete("http://localhost:3300/api/v1/cart",{"itemName":item.name},{headers:{"Authorization": `Bearer ${key.token}`}})
-  }
+  
 
   if (loading) {
     return (
@@ -95,13 +94,20 @@ const Menu = () => {
   return (
     <>
       {Object.keys(itemData).map(category => (
-        <div key={category}>
+        <motion.div key={category}    >
           <h2>{category}</h2>
-          <div className="menu-category">``
+          <div className="menu-category" >
             <hr />
             {itemData[category].map(item => (
+              <motion.div   initial={{ scale: 0 }}
+              animate={{ rotate: 360, scale: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 520,
+                damping: 40
+              }} >
               <Card key={item.id} style={{ width: '18rem'}}>
-                <Card.Img variant="top" src={item.image} width={150} height={150} />
+                <Card.Img variant="top" src={item.image} width={150} height={200} style={{borderRadius:'0 0 30%  30%'}}/>
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text>
@@ -122,10 +128,11 @@ const Menu = () => {
                   </Container> 
                 </Card.Body>
               </Card>
+              </motion.div>
             ))}
           </div>
           <hr />
-        </div>
+        </motion.div>
       ))}
     </>
   );
