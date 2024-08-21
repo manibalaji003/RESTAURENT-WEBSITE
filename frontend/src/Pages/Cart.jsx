@@ -65,7 +65,7 @@ const Cart = () => {
   return (
     <Container className='cartmaincontainer'>
       <Container className='cartheading'>
-        <Container><h5>Name</h5></Container>
+        <Container><h5>Product</h5></Container>
         <Container><h5>Quantity</h5></Container>
         <Container><h5>Price</h5></Container>
         <Container><h5>Remove</h5></Container>
@@ -73,32 +73,30 @@ const Cart = () => {
       <hr />
       {cartData.map((item, index) => (
         <div key={index} className='cartcontainer'>
-          <Container className='cartimgcontainer'>
-            <Container className='cartimage'>
-              {/* <img src={item.image || image} alt={item.name} /> */}
-            </Container>
-            <Container className='imagename'>
+
+            <Container className='cartimgcontainer'>
+              <img className='cartimage' src={item.image} alt={item.name} />
               <h5>{item.name}</h5>
             </Container>
-          </Container>
-          <Container className='quantitycontainer'>
-            <Button className="plus" onClick={() => increment(index)}>+</Button>
-           <span className='itemquantity'>{item.qty}</span> 
-            <Button className="minus" onClick={() => decrement(index)}>-</Button>
-          </Container>
-          <Container>
-            <p> &#8377; {item.price.toFixed(2)}</p>
-          </Container>
-          <Container>
-              <Button className='btnremove'  onClick={()=>RemoveCart(item)}>Remove</Button>
-          </Container>
-          <hr />
+
+            <Container className='quantitycontainer'>
+              <Button className="plus" onClick={() => increment(index)}>+</Button>
+              <span className='itemquantity'>{item.qty}</span> 
+              <Button className="minus" onClick={() => decrement(index)}>-</Button>
+            </Container>
+
+            <Container>
+              <p><b> &#8377; {item.price.toFixed(2)}</b></p>
+            </Container>
+            <Container>
+                <Button className='btnremove'  onClick={()=>RemoveCart(item)}>Remove</Button>
+            </Container>
+            <hr />
         </div>
       ))}
       <Container className='amount'>
       <Container className='totalamount'>
         <h5>Total amount: &#8377; {cartData.totalPrice}</h5>
-        
       </Container>
       <Container className='checkout'>
           <Button  onClick={()=>{checkoutcart()}}><i className="bi bi-bookmark-check-fill"></i>Checkout</Button>

@@ -107,7 +107,7 @@ const Menu = () => {
                 damping: 40
               }} >
               <Card key={item.id} style={{ width: '18rem'}}>
-                <Card.Img variant="top" src={item.image} width={150} height={200} style={{borderRadius:'0 0 30%  30%'}}/>
+                <Card.Img variant="top" src={item.image} width={150} height={200} style={{objectFit:"fill"}}/>
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text>
@@ -125,7 +125,7 @@ const Menu = () => {
                         <Button className='btnadd' onClick={() => addCart(item)}>Add to cart</Button>
                       
                     </Container>
-                  </Container>
+                  </Container> 
                 </Card.Body>
               </Card>
               </motion.div>

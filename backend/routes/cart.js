@@ -4,6 +4,8 @@ const {OrderItem} = require('../models/orderItems')
 const {Item} = require('../models/items');
 const {authenticateToken} = require('../helpers/auth');
 const router = express.Router();
+require('dotenv/config')
+const PORT= process.env.PORT;
 
 router.get('/',authenticateToken, async (req,res)=>{
     const cart = await Cart.findOne({user: req.user.userId}).populate('orderItems')
@@ -41,10 +43,16 @@ router.post('/',authenticateToken,async (req,res)=>{
         return res.status(404).json(err);
     })
 
-    // creating New OrderItem
+    // creating New OrderItem'
+    const uri=`http://localhost:${PORT}/images`;
+    let imageLink = new Map();
+    imageLink.set("Lassi", `${uri}/lassi.jpg`);
+    imageLink.set("Mango Lassi", `${uri}/mango-lassi.jpg`);
+    imageLink.set('Soft')
     await new OrderItem({
         name: req.body.itemName,
-        price: productPrice
+        price: productPrice,
+        image: imageLink.get(req.body.itemName)
     }).save().then((savedObj)=>{
         orderItemId = savedObj._id;
     }).catch((err)=>{
