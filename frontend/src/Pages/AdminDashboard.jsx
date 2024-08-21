@@ -1,4 +1,4 @@
-import {Container,Form} from 'react-bootstrap'
+import {Container,Form,Button} from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
@@ -42,17 +42,17 @@ export default AdminDashboard
   const data=props.admindata1;
   return (
     <div>
-        <Container>
-                <Form>
+        <Container >
+                <Form > 
                         <Form.Group>
                           <Form.Label>Name</Form.Label>
                           <Form.Select>
                              {Object.keys(data).map(item=>(
-                              <option key={item}>{item}</option>
+                              <option key={item} value={item}>{item}</option>
                              ))}
                           </Form.Select>
                         </Form.Group>
-                        <Button>Select</Button>
+                        <Button style={{float:'right'}}>Select</Button>
                 </Form>
         </Container>
     </div>
