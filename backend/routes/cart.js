@@ -48,7 +48,12 @@ router.post('/',authenticateToken,async (req,res)=>{
     let imageLink = new Map();
     imageLink.set("Lassi", `${uri}/lassi.jpg`);
     imageLink.set("Mango Lassi", `${uri}/mango-lassi.jpg`);
-    imageLink.set('Soft')
+    imageLink.set('Soft Drinks', `${uri}/soft-drinks.jpg`);
+    imageLink.set('Mango Milk Shake', `${uri}/mango-milk-shake.jpg`);
+    imageLink.set('Tea', `${uri}/tea.jpg`);
+    imageLink.set('Ice Tea', `${uri}/ice-tea.jpg`);
+    imageLink.set('Special Tea', `${uri}/special-tea.jpg`);
+    
     await new OrderItem({
         name: req.body.itemName,
         price: productPrice,

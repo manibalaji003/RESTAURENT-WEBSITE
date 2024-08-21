@@ -12,8 +12,7 @@ const orderItemSchema = mongoose.Schema({
         type: Number,
         required: true
     },image: {
-        type: String,
-        required: true
+        type: String
     }
 })
 
