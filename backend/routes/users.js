@@ -89,7 +89,7 @@ router.post('/login',async (req,res)=>{
     res.status(200).json({
         error: "Email or Password is wrong!",
         success: false
-    })
+    })  
     
 })
 
