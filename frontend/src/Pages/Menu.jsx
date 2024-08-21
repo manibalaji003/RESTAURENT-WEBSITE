@@ -97,7 +97,7 @@ const Menu = () => {
       {Object.keys(itemData).map(category => (
         <div key={category}>
           <h2>{category}</h2>
-          <div className="menu-category">
+          <div className="menu-category">``
             <hr />
             {itemData[category].map(item => (
               <Card key={item.id} style={{ width: '18rem'}}>
@@ -119,7 +119,7 @@ const Menu = () => {
                         <Button className='btnadd' onClick={() => addCart(item)}>Add to cart</Button>
                       
                     </Container>
-                  </Container>
+                  </Container> 
                 </Card.Body>
               </Card>
             ))}
