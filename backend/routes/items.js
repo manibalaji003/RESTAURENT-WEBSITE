@@ -3,6 +3,27 @@ const express = require('express')
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+require('dotenv/config');
+const PORT = process.env.PORT;
+const API = process.env.API_URL;
+
+
+// Configure storage with multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'images'); // Save files to the 'images' folder
+    },
+    filename:   (req, file, cb) => {
+        const name = file.originalname.replace(/\s+/g, '-').toLowerCase();
+        const ext = path.extname(file.originalname);
+        req.savedFile = name;
+        req.savedExt = ext;
+        cb(null, `${name}`);
+    }
+});
+   
+const upload = multer({ storage: storage } );
 
 // get all items
 router.get('/get', async (req,res)=>{ 
@@ -70,15 +91,23 @@ router.delete('/delete/:id', (req,res)=>{
 })
 
 // post item
-router.post('/post', (req,res)=>{
+router.post('/post', upload.single('image') ,(req,res)=>{
+    const oldPath = path.join(__dirname,'..', 'images', req.savedFile);
+    console.log(oldPath)
+    const newName = req.body.name.toLowerCase().replace(/ /g, '-');
+    const newPath = path.join(__dirname,'..', 'images', `${newName}${req.savedExt}`);
+    console.log(newPath)
     const item = new Item({
         name: req.body.name,
         category: req.body.category,
-        image: req.body.image, 
         description: req.body.description,
         price: req.body.price,
+        image: `http://localhost:${PORT}/images/${newName}${req.savedExt}`,
         rating: req.body.rating
     })
+    fs.rename(oldPath, newPath, (err)=>{
+        if(err) console.log(err);
+    });
     item.save().then((created)=>{
         res.status(201).json(created)
     }).catch((err)=>{ 
@@ -89,7 +118,7 @@ router.post('/post', (req,res)=>{
     })
 })
 
-// update item by id
+// update item by name
 router.put('/update/:id',(req,res)=>{
     Item.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
