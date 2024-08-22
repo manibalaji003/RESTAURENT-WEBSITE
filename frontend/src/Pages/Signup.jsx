@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import Header from '../Components/Header'
-import { Button, Container ,Row,Col,FloatingLabel,Form} from 'react-bootstrap'
+import  { useState } from 'react'
+import { Button, Container ,Row,Col,Form} from 'react-bootstrap'
 import axios from 'axios'
 
 const Signup = () => {
@@ -24,6 +23,7 @@ const Signup = () => {
 const Alert =(a,b,c)=>{
 
       return (
+        // eslint-disable-next-line no-undef
         Swal.fire({
           icon: a,
           title: b,
