@@ -4,7 +4,9 @@ const {OrderItem} = require('../models/orderItems')
 const {Item} = require('../models/items');
 const {authenticateToken} = require('../helpers/auth');
 const router = express.Router();
-require('dotenv/config')
+const fs = require('fs');
+const path = require('path');
+require('dotenv/config');
 const PORT= process.env.PORT;
 
 router.get('/',authenticateToken, async (req,res)=>{
@@ -45,14 +47,31 @@ router.post('/',authenticateToken,async (req,res)=>{
 
     // creating New OrderItem'
     const uri=`http://localhost:${PORT}/images`;
-    let imageLink = new Map();
-    imageLink.set("Lassi", `${uri}/lassi.jpg`);
-    imageLink.set("Mango Lassi", `${uri}/mango-lassi.jpg`);
-    imageLink.set('Soft')
+    const image_name=req.body.itemName.toLowerCase().replace(/ /g, '-');
+    let image_path = `${uri}/${image_name}`;
+    const possible_extensions = ['jpg', 'jpeg', 'png'];
+    for(ext of possible_extensions){
+        let test=path.join(__dirname, '..', 'images', `${image_name}.${ext}`);
+        console.log(test);
+        console.log();
+        if(fs.existsSync(test)){
+            image_path=`${image_path}.${ext}`;
+            break;
+        }
+    }
+    // let imageLink = new Map();
+    // imageLink.set("Lassi", `${uri}/lassi.jpg`);
+    // imageLink.set("Mango Lassi", `${uri}/mango-lassi.jpg`);
+    // imageLink.set('Soft Drinks', `${uri}/soft-drinks.jpg`);
+    // imageLink.set('Mango Milk Shake', `${uri}/mango-milk-shake.jpg`);
+    // imageLink.set('Tea', `${uri}/tea.jpg`);
+    // imageLink.set('Ice Tea', `${uri}/ice-tea.jpg`);
+    // imageLink.set('Special Tea', `${uri}/special-tea.jpg`);
+    
     await new OrderItem({
         name: req.body.itemName,
         price: productPrice,
-        image: imageLink.get(req.body.itemName)
+        image: image_path
     }).save().then((savedObj)=>{
         orderItemId = savedObj._id;
     }).catch((err)=>{

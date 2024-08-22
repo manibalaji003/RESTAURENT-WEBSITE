@@ -8,7 +8,7 @@ beverages: lassi, mango lassi, soft drinks, mango milk shake, tea, ice tea, spec
 veg dish: aloo choley, mater paneer, aloo saag, saag paneer, dal makhani, bhartha, malai kofta
 
 rice specialities biryani:
-veg biryani, chicken biryani, lamb briyani, shrimp '', rice pilaf, goat briyani, combo biryani, egg briyani, chicken tika briyani
+veg biryani, chicken biryani, lamb briyani, shrimp , rice pilaf, goat briyani, combo biryani, egg briyani, chicken tika briyani
 
 side dish: rita, hot pickles, sweet mango chutney, butter chicken, chicken kabhab, chetinadu chicken
 
@@ -17,7 +17,7 @@ soup: dal soup, tomato, butternut squash soup,
 dinner specials: lamb choley, lamb & shrimp curry
 
 
-='-p[']
+
 
 Website layout:
 

@@ -1,6 +1,47 @@
 const {Item} = require('../models/items')
 const express = require('express')
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+require('dotenv/config');
+const {authenticateToken} = require('../helpers/auth');
+const PORT = process.env.PORT;
+const API = process.env.API_URL;
+
+
+// Configure storage with multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'images'); // Save files to the 'images' folder
+    },
+    filename:   (req, file, cb) => {
+        const name = file.originalname.replace(/\s+/g, '-').toLowerCase();
+        const ext = path.extname(file.originalname);
+        req.savedFile = name;
+        req.savedExt = ext;
+        cb(null, `${name}`);
+    }
+});
+   
+const upload = multer({ storage: storage } );
+
+
+// get saved file path
+const getSavedFilePath=(saved_file_name, saved_file_ext, body_name)=>{
+    let db_image;
+    if(saved_file_name){
+        const oldPath = path.join(__dirname,'..', 'images', saved_file_name);
+        console.log(oldPath)
+        const newName = body_name.toLowerCase().replace(/ /g, '-');
+        const newPath = path.join(__dirname,'..', 'images', `${newName}${saved_file_ext}`);
+        console.log(newPath)
+        db_image = `http://localhost:${PORT}/images/${newName}${saved_file_ext}`;
+        fs.rename(oldPath, newPath, (err)=>{
+            if(err) console.log(err);
+        });
+    }return db_image;
+}
 
 // get all items
 router.get('/get', async (req,res)=>{ 
@@ -68,15 +109,17 @@ router.delete('/delete/:id', (req,res)=>{
 })
 
 // post item
-router.post('/post', (req,res)=>{
+router.post('/post',authenticateToken ,upload.single('image') ,(req,res)=>{
+    let db_image=getSavedFilePath(req.savedFile, req.savedExt, req.body.name);
     const item = new Item({
         name: req.body.name,
         category: req.body.category,
-        image: req.body.image, 
         description: req.body.description,
         price: req.body.price,
+        image: db_image,
         rating: req.body.rating
     })
+    
     item.save().then((created)=>{
         res.status(201).json(created)
     }).catch((err)=>{ 
@@ -92,12 +135,29 @@ router.put('/update/:id',(req,res)=>{
     Item.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         category: req.body.category,
-        image: req.body.image,
         description: req.body.description,
         price: req.body.price,
         rating: req.body.rating
     },{
         new: true
+    }).then((obj)=>{
+        res.status(201).json(obj)
+    }).catch((err)=>{
+        res.status(500).json({
+            error: err,
+            success: false
+        })
+    })
+})
+
+router.put('/update',upload.single('image'), (req,res)=>{
+    const db_image = getSavedFilePath(req.savedFile, req.savedExt, req.body.name);
+    Item.findOneAndUpdate({name: req.body.name}, {
+        name: req.body.name,
+        category: req.body.category,
+        image: db_image,
+        description: req.body.description,
+        price: req.body.price
     }).then((obj)=>{
         res.status(201).json(obj)
     }).catch((err)=>{
