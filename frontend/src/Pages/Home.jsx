@@ -50,9 +50,9 @@ Join us at [Your Restaurant Name] and discover a dining experience that delights
        
             <Container className='address'>
           <h4>Contact us</h4>
-                <p>EMAIL:  <span>manibalaji22003@gmail.com</span></p>
-                <p>PHONE NO:  <span>123467890</span></p>
-                <p>ADDRESS:  <address>1/3 vivekanda street, dubai main road Dubai </address></p>
+                <p>EMAIL:  <span>manibalaji22003@gmail.com, sraafih810@gmail.com</span></p>
+                <p>PHONE NO:  <span>1234567890</span></p>
+                <p>ADDRESS:  <span><address>1/3A, North Street, Town, Tirunelveli</address></span></p>
             </Container>
        </div>
        <Footer />

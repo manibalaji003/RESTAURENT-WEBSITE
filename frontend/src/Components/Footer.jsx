@@ -10,7 +10,7 @@ const Footer = () => {
               
             </div>
             <hr />
-            <center>  Made with &#x2764;  by Mani balaji & raafih ahmed</center><br />
+            <center>  Made with &#x2764;  by Mani Balaji & Raafih Ahmad</center><br />
     </div>
   )
 }

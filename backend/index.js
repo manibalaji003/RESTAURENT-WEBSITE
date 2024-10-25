@@ -12,7 +12,7 @@ const usersRouter = require('./routes/users');
 const ordersRouter = require('./routes/orders');
 const orderItemsRouter = require('./routes/orderItems');
 const cartRouter = require('./routes/cart');
-const {imagesRouter} = require('./routes/images')
+// const {imagesRouter} = require('./routes/images')
 const {errorHandler} = require('./helpers/error-handlers');
 
 //middleware
@@ -29,7 +29,7 @@ app.use(`${api}/users`,usersRouter);
 app.use(`${api}/orders`, ordersRouter);
 app.use(`${api}/orderitems`, orderItemsRouter);
 app.use(`${api}/cart`,cartRouter);
-app.use(`${api}/images`,imagesRouter);
+// app.use(`${api}/images`,imagesRouter);
 
 
 //database

@@ -13,7 +13,7 @@ const generateToken=(userId, isAdmin)=>{
 
 // router.post('/',async (req,res)=>{
 //     let user = new User({
-//         name: req.body.name,
+//         name: req.body.name,`
 //         email: req.body.email,
 //         passwordHash : bcrypt.hashSync(req.body.password,10),
 //         apartment: req.body.apartment,

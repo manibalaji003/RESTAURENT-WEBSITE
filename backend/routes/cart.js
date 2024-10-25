@@ -1,5 +1,5 @@
 const express = require('express')
-const {Cart} = require('../models/cart');
+const Cart = require('../models/cart');
 const {OrderItem} = require('../models/orderItems')
 const {Item} = require('../models/items');
 const {authenticateToken} = require('../helpers/auth');
